@@ -4,926 +4,1507 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ÖRV Zeltweg – Hundeschule Murtal</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
+/* =============================================
+   4 FARBEN + WEISS/SCHWARZ
+   Wald-Grün  #3d6b45   → --green
+   Warmes Creme  #faf6ef → --cream
+   Honig-Amber   #c8832a → --amber
+   Tiefes Braun  #2c2416 → --brown
+   ============================================= */
 :root {
-  --green-deep:  #182818;
-  --green-mid:   #2a4a2a;
-  --green-light: #3d6b3d;
-  --green-pale:  #e6ede6;
-  --cream:       #f8f4ee;
-  --cream-dark:  #ede5d8;
-  --brown:       #8a6040;
-  --gold:        #c4a060;
-  --white:       #ffffff;
-  --text-dark:   #181818;
-  --text-mid:    #555;
+  --green:    #3d6b45;
+  --green-d:  #2a4d30;
+  --green-l:  #edf5ee;
+  --green-m:  #b8d4bc;
+  --cream:    #faf6ef;
+  --cream-d:  #f0ead e;
+  --sand:     #e8dfc e;
+  --amber:    #c8832a;
+  --amber-l:  #fdf3e6;
+  --brown:    #2c2416;
+  --white:    #ffffff;
+  --text:     #2c2416;
+  --text-mid: #5a5040;
+  --text-dim: #9a9080;
 }
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* fix typo in variables */
+:root {
+  --cream-d: #f0eade;
+  --sand:    #e8dfce;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--cream);
-  color: var(--text-dark);
+  color: var(--text);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+img { display: block; max-width: 100%; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
 
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--green-deep); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
-
-/* ─── NAV ─── */
+/* =============================================
+   NAVIGATION
+   ============================================= */
 nav {
-  position: fixed; top:0; left:0; right:0; z-index:200;
-  padding: 22px 6%;
-  display: flex; justify-content: space-between; align-items: center;
-  transition: background .5s, padding .4s, backdrop-filter .5s;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 600;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background .45s, padding .35s, box-shadow .45s;
 }
 nav.scrolled {
-  background: rgba(24,40,24,0.96);
+  background: rgba(250,246,239,.97);
   backdrop-filter: blur(12px);
-  padding: 14px 6%;
-  box-shadow: 0 2px 32px rgba(0,0,0,.25);
+  padding: 13px 7%;
+  box-shadow: 0 1px 0 var(--sand), 0 4px 24px rgba(44,36,22,.06);
 }
-.nav-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.nav-logo-placeholder {
+.nav-logo-wrap {
   height: 44px;
-  width: 120px;
-  background: rgba(255,255,255,0.08);
-  border: 1px dashed rgba(196,160,96,0.5);
+  width: 130px;
+  background: rgba(255,255,255,.35);
+  border: 1.5px dashed rgba(61,107,69,.35);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: .6rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .52rem;
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(196,160,96,0.6);
-  font-family: 'Lato', sans-serif;
+  color: rgba(61,107,69,.5);
+  text-decoration: none;
+  transition: background .2s;
 }
-.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-logo-wrap:hover { background: rgba(61,107,69,.07); }
+.nav-logo-wrap img { height: 100%; width: 100%; object-fit: contain; border-radius: 6px; }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
 .nav-links a {
-  font-size: .78rem; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; color:rgba(248,244,238,.8);
-  text-decoration:none; transition: color .2s;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  text-decoration: none;
+  transition: color .2s;
+  position: relative;
 }
-.nav-links a:hover { color: var(--gold); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--green);
+  transition: width .3s;
+}
+.nav-links a:hover { color: var(--green); }
+.nav-links a:hover::after { width: 100%; }
+.nav-btn {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  padding: 10px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background .25s, transform .2s, box-shadow .25s;
+  box-shadow: 0 3px 14px rgba(61,107,69,.3);
+}
+.nav-btn:hover {
+  background: var(--green-d);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(61,107,69,.38);
+}
 
-/* ─── HERO ─── */
+/* =============================================
+   HERO
+   ============================================= */
 #hero {
-  height: 100vh; min-height: 640px;
-  position: relative; display:flex; align-items:center;
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
   overflow: hidden;
-  background: var(--green-deep);
+  display: flex;
+  align-items: center;
 }
 
-/* ── HERO SLIDESHOW ── */
-.hero-slides {
-  position: absolute; inset: 0; z-index: 0;
-}
-.hero-slide {
+/* Slideshow */
+.slides { position: absolute; inset: 0; z-index: 0; }
+.slide {
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 1.4s ease-in-out;
+  transition: opacity 1.8s ease-in-out;
 }
-.hero-slide.active { opacity: 1; }
-
-/* Placeholder slides with green tones until real photos added */
-.hero-slide:nth-child(1) { background-color: #1e3a1e; background-image: linear-gradient(135deg, #1e3a1e 0%, #2d5a2d 100%); }
-.hero-slide:nth-child(2) { background-color: #2a3a20; background-image: linear-gradient(135deg, #2a3a20 0%, #3d5a30 100%); }
-.hero-slide:nth-child(3) { background-color: #1a2e2a; background-image: linear-gradient(135deg, #1a2e2a 0%, #2a4a40 100%); }
-.hero-slide:nth-child(4) { background-color: #2e2a1a; background-image: linear-gradient(135deg, #2e2a1a 0%, #4a4020 100%); }
-.hero-slide:nth-child(5) { background-color: #1e2a1e; background-image: linear-gradient(135deg, #1e2a1e 0%, #304530 100%); }
-
-/* dark overlay so text stays readable over photos */
-.hero-slide::after {
-  content: '';
+.slide.active { opacity: 1; }
+/* Platzhalter bis echte Fotos */
+.slide:nth-child(1) { background: linear-gradient(135deg,#9ac4a2 0%,#c4dac7 100%); }
+.slide:nth-child(2) { background: linear-gradient(135deg,#a4b898 0%,#c8d8bc 100%); }
+.slide:nth-child(3) { background: linear-gradient(135deg,#c4b890 0%,#ddd4b0 100%); }
+.slide:nth-child(4) { background: linear-gradient(135deg,#98b0c4 0%,#bcccd8 100%); }
+.slide:nth-child(5) { background: linear-gradient(135deg,#b89898 0%,#d4bcbc 100%); }
+.slide-hint {
   position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .62rem; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(44,36,22,.28); pointer-events: none;
+}
+
+/* Overlay */
+.hero-ov {
+  position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
-    to right,
-    rgba(10,20,10,0.72) 0%,
-    rgba(10,20,10,0.45) 55%,
-    rgba(10,20,10,0.25) 100%
+    110deg,
+    rgba(250,246,239,.94) 0%,
+    rgba(250,246,239,.82) 38%,
+    rgba(250,246,239,.30) 68%,
+    rgba(250,246,239,.05) 100%
   );
 }
 
-/* slide dots */
-.hero-dots {
-  position: absolute; bottom: 36px; right: 8%;
-  z-index: 3;
-  display: flex; gap: 10px; align-items: center;
-}
-.hero-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(248,244,238,0.35);
-  cursor: pointer;
-  transition: background .3s, transform .3s;
-  border: none; padding: 0;
-}
-.hero-dot.active {
-  background: var(--gold);
-  transform: scale(1.3);
-}
-
-/* photo hint labels (only visible until real photos added) */
-.hero-slide-hint {
-  position: absolute; inset: 0; z-index: 1;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .65rem; font-weight: 700; letter-spacing: .2em;
-  text-transform: uppercase; color: rgba(248,244,238,.2);
+/* Wellenkante */
+.hero-wave {
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  z-index: 2;
+  line-height: 0;
   pointer-events: none;
 }
+.hero-wave svg { display: block; width: 100%; }
 
-@keyframes orbMove {
-  from { transform: translate(0,0) scale(1); }
-  to   { transform: translate(40px, 30px) scale(1.08); }
+/* Slide-Dots */
+.slide-dots {
+  position: absolute;
+  bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex; gap: 8px; align-items: center;
 }
-
-/* grain texture overlay */
-.hero-grain {
-  position:absolute; inset:0; z-index:1; opacity:.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 200px;
-}
-
-.hero-content {
-  position:relative; z-index:2;
-  padding: 0 8%; max-width:780px;
-}
-.hero-eyebrow {
-  font-size:.72rem; font-weight:700; letter-spacing:.28em;
-  text-transform:uppercase; color:var(--gold);
-  margin-bottom:20px;
-  display:flex; align-items:center; gap:14px;
-  opacity:0; animation: fadeUp .8s .3s forwards;
-}
-.hero-eyebrow::before { content:''; width:36px; height:1px; background:var(--gold); }
-.hero-title {
-  font-family:'Playfair Display', serif;
-  font-size: clamp(3.2rem, 7.5vw, 6rem);
-  font-weight:700; line-height:1.04; color:var(--cream);
-  margin-bottom:28px;
-  opacity:0; animation: fadeUp .9s .5s forwards;
-}
-.hero-title em { font-style:italic; color:var(--gold); }
-.hero-sub {
-  font-size:1.05rem; font-weight:300; line-height:1.8;
-  color:rgba(248,244,238,.65); max-width:480px; margin-bottom:44px;
-  opacity:0; animation: fadeUp .9s .7s forwards;
-}
-.hero-cta {
-  display:inline-flex; align-items:center; gap:12px;
-  background:var(--brown); color:var(--cream);
-  padding:16px 38px;
-  font-size:.82rem; font-weight:700; letter-spacing:.16em;
-  text-transform:uppercase; text-decoration:none;
-  transition: background .3s, gap .3s;
-  opacity:0; animation: fadeUp .9s .9s forwards;
-}
-.hero-cta::after { content:'→'; font-size:1rem; transition: transform .3s; }
-.hero-cta:hover { background: var(--green-light); gap: 18px; }
-.hero-cta:hover::after { transform: translateX(4px); }
-
-/* scroll indicator */
-.hero-scroll-line {
-  position:absolute; bottom:0; left:8%; z-index:2;
-  width:1px; height:80px;
-  background: linear-gradient(to bottom, rgba(196,160,96,.6), transparent);
-  animation: growLine 1.2s 1.2s forwards;
-  transform-origin: top; transform: scaleY(0);
-}
-@keyframes growLine { to { transform: scaleY(1); } }
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(24px); }
-  to   { opacity:1; transform:none; }
-}
-
-/* ─── SECTION BASICS ─── */
-section { padding: 100px 8%; }
-.sec-label {
-  font-size:.7rem; font-weight:700; letter-spacing:.28em;
-  text-transform:uppercase; color:var(--brown);
-  display:flex; align-items:center; gap:12px; margin-bottom:14px;
-}
-.sec-label::before { content:''; width:28px; height:1px; background:var(--brown); flex-shrink:0; }
-.sec-title {
-  font-family:'Playfair Display', serif;
-  font-size: clamp(2rem,4vw,3rem);
-  font-weight:700; line-height:1.2; color:var(--green-deep);
-  margin-bottom:16px;
-}
-.sec-title em { font-style:italic; color:var(--brown); }
-.sec-body {
-  font-size:.98rem; font-weight:300; line-height:1.85;
-  color:var(--text-mid); max-width:560px;
-}
-
-/* reveal */
-.reveal { opacity:0; transform:translateY(32px); transition: opacity .75s ease, transform .75s ease; }
-.reveal.visible { opacity:1; transform:none; }
-.reveal-left { opacity:0; transform:translateX(-32px); transition: opacity .75s ease, transform .75s ease; }
-.reveal-left.visible { opacity:1; transform:none; }
-.reveal-right { opacity:0; transform:translateX(32px); transition: opacity .75s ease, transform .75s ease; }
-.reveal-right.visible { opacity:1; transform:none; }
-
-/* ─── ÜBER UNS ─── */
-#ueber {
-  background: var(--cream);
-  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
-}
-.ueber-text p {
-  font-size:1rem; font-weight:300; line-height:1.9;
-  color:var(--text-mid); margin-bottom:18px;
-}
-.ueber-text p strong { color:var(--green-deep); font-weight:700; }
-.ueber-visual {
-  display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
-  gap:3px; aspect-ratio:1;
-}
-.ueber-photo {
-  background: var(--green-pale);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:8px; color:var(--green-mid);
-  font-size:.68rem; font-weight:700; letter-spacing:.12em;
-  text-transform:uppercase; opacity:.75;
-  transition: opacity .3s;
-  position:relative; overflow:hidden;
-}
-.ueber-photo:first-child {
-  grid-column:1/3;
-  aspect-ratio: 2/1;
-  font-size:2.5rem;
-}
-.ueber-photo:not(:first-child) { aspect-ratio:1; font-size:1.8rem; }
-.ueber-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.ueber-photo:hover { opacity:1; }
-.ueber-photo-hint {
-  font-size:.65rem; font-weight:700; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--green-light); opacity:.7;
-  margin-top:4px;
-}
-
-/* ─── KURSE ─── */
-#kurse {
-  background: var(--green-deep);
-  position:relative; overflow:hidden;
-}
-/* animated bg lines - removed */
-.kurse-bg { display: none; }
-.kurse-bg-orb {
-  position:absolute; width:600px; height:600px; border-radius:50%;
-  background: radial-gradient(circle, rgba(61,107,61,.4) 0%, transparent 70%);
-  right:-150px; bottom:-150px;
-  animation: orbMove 16s ease-in-out infinite alternate;
-}
-#kurse .sec-label { color:var(--gold); }
-#kurse .sec-label::before { background:var(--gold); }
-#kurse .sec-title { color:var(--cream); }
-#kurse .sec-title em { color:var(--gold); }
-.kurse-header { position:relative; z-index:1; margin-bottom:52px; }
-.kurse-grid {
-  position:relative; z-index:1;
-  display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
-}
-.kurs-card {
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-  padding:36px 28px;
+.sdot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(61,107,69,.25);
+  border: none; padding: 0; cursor: pointer;
   transition: background .3s, transform .3s;
-  position:relative; overflow:hidden;
 }
-.kurs-card::after {
-  content:''; position:absolute;
-  bottom:0; left:0; width:100%; height:2px;
-  background:var(--gold); transform:scaleX(0); transform-origin:left;
-  transition:transform .35s;
-}
-.kurs-card:hover { background:rgba(255,255,255,.08); transform:translateY(-5px); }
-.kurs-card:hover::after { transform:scaleX(1); }
-.kurs-icon { font-size:2rem; margin-bottom:16px; display:block; }
-.kurs-name {
-  font-family:'Playfair Display',serif;
-  font-size:1.1rem; font-weight:600;
-  color:var(--cream); margin-bottom:10px;
-}
-.kurs-desc {
-  font-size:.85rem; font-weight:300; line-height:1.7;
-  color:rgba(248,244,238,.55);
-}
-.kurs-badge {
-  display:inline-block; margin-top:16px;
-  font-size:.62rem; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--gold);
-  border:1px solid rgba(196,160,96,.35); padding:3px 10px;
+.sdot.active {
+  background: var(--green);
+  transform: scale(1.4);
 }
 
-/* ─── KURSZEITEN ─── */
-#zeiten { background: var(--cream-dark); }
+/* Hero Content */
+.hero-content {
+  position: relative; z-index: 3;
+  padding: 0 7%;
+  max-width: 640px;
+}
+.hero-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--brown);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp .9s .25s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--green);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.82;
+  color: var(--text-mid);
+  max-width: 440px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp .9s .45s forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .9s .65s forwards;
+}
+.btn-fill {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--green);
+  color: var(--white);
+  font-size: .88rem; font-weight: 600;
+  text-decoration: none;
+  padding: 13px 26px;
+  border-radius: 100px;
+  box-shadow: 0 5px 20px rgba(61,107,69,.32);
+  transition: background .25s, transform .2s, box-shadow .25s;
+}
+.btn-fill:hover {
+  background: var(--green-d);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(61,107,69,.4);
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,.65);
+  color: var(--green);
+  border: 1.5px solid var(--green-m);
+  font-size: .88rem; font-weight: 600;
+  text-decoration: none;
+  padding: 13px 26px;
+  border-radius: 100px;
+  backdrop-filter: blur(8px);
+  transition: background .25s, border-color .25s, transform .2s;
+}
+.btn-ghost:hover {
+  background: var(--green-l);
+  border-color: var(--green);
+  transform: translateY(-2px);
+}
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeUp .9s .85s forwards;
+}
+.htrust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.htrust-num {
+  font-family: 'Lora', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+.htrust-lbl {
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+.htrust-sep {
+  width: 1px; height: 32px;
+  background: var(--sand);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* =============================================
+   REVEAL ANIMATION
+   ============================================= */
+.r    { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.r-l  { opacity: 0; transform: translateX(-24px); transition: opacity .75s ease, transform .75s ease; }
+.r-r  { opacity: 0; transform: translateX(24px); transition: opacity .75s ease, transform .75s ease; }
+.r-s  { opacity: 0; transform: scale(.96); transition: opacity .65s ease, transform .65s ease; }
+.r.on, .r-l.on, .r-r.on, .r-s.on { opacity: 1; transform: none; }
+
+/* =============================================
+   SECTION COMMONS
+   ============================================= */
+section { padding: 96px 7%; }
+
+.s-label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.s-label::before {
+  content: '';
+  width: 24px; height: 1.5px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+.s-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--brown);
+  margin-bottom: 16px;
+}
+.s-title em { font-style: italic; color: var(--green); }
+.s-body {
+  font-size: .98rem;
+  font-weight: 400;
+  line-height: 1.82;
+  color: var(--text-mid);
+  max-width: 520px;
+}
+
+/* =============================================
+   ÜBER UNS
+   ============================================= */
+#ueber { background: var(--white); }
+
+.ueber-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.ueber-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.u-photo {
+  border-radius: 16px;
+  background: var(--green-l);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform .35s;
+}
+.u-photo:hover { transform: scale(.97); }
+.u-photo:first-child {
+  grid-column: 1 / 3;
+  height: 260px;
+  border-radius: 20px;
+}
+.u-photo:not(:first-child) { height: 185px; }
+.u-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.u-ph-icon { font-size: 2rem; opacity: .25; z-index: 1; }
+.u-ph-txt {
+  font-size: .58rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--green-d); opacity: .5; z-index: 1;
+}
+
+.ueber-text {}
+.ueber-text .s-body { margin-bottom: 16px; max-width: 100%; }
+.ueber-text .s-body strong { color: var(--green); font-weight: 600; }
+
+.facts {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.fact-item {
+  flex: 1 1 80px;
+  background: var(--green-l);
+  border: 1px solid var(--green-m);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align: center;
+}
+.fact-num {
+  font-family: 'Lora', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+.fact-lbl {
+  font-size: .67rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+.ueber-callout {
+  margin-top: 24px;
+  padding: 15px 18px;
+  background: var(--amber-l);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  font-size: .92rem;
+  font-weight: 500;
+  color: #7a4c18;
+  line-height: 1.65;
+}
+
+/* =============================================
+   WARUM WIR
+   ============================================= */
+#warum {
+  background: var(--cream-d);
+}
+.warum-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 52px;
+}
+.w-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 30px 24px;
+  border: 1px solid var(--sand);
+  transition: transform .3s, box-shadow .3s;
+}
+.w-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 40px rgba(44,36,22,.1);
+}
+.w-icon {
+  width: 50px; height: 50px;
+  background: var(--green-l);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+.w-title {
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 9px;
+}
+.w-text {
+  font-size: .87rem;
+  font-weight: 400;
+  line-height: 1.72;
+  color: var(--text-mid);
+}
+
+/* =============================================
+   KURSE
+   ============================================= */
+#kurse { background: var(--white); }
+
+.kurse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(286px, 1fr));
+  gap: 18px;
+  margin-top: 52px;
+}
+.k-card {
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 26px 22px;
+  border: 1px solid var(--sand);
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.k-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s;
+}
+.k-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(44,36,22,.09);
+  border-color: var(--green-m);
+}
+.k-card:hover::before { transform: scaleX(1); }
+.k-icon {
+  width: 46px; height: 46px;
+  background: var(--green-l);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+}
+.k-name {
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 7px;
+}
+.k-desc {
+  font-size: .87rem;
+  font-weight: 400;
+  line-height: 1.72;
+  color: var(--text-mid);
+  margin-bottom: 14px;
+}
+.k-tag {
+  display: inline-block;
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--green-l);
+  color: var(--green-d);
+  border: 1px solid var(--green-m);
+}
+.k-tag.amber {
+  background: var(--amber-l);
+  color: #7a4c18;
+  border-color: rgba(200,131,42,.25);
+}
+
+/* =============================================
+   KURSZEITEN
+   ============================================= */
+#zeiten { background: var(--cream-d); }
+
+.zeiten-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.zeiten-badge {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .82rem; font-weight: 600;
+  color: #7a4c18;
+  background: var(--amber-l);
+  border: 1px solid rgba(200,131,42,.22);
+  padding: 10px 20px;
+  border-radius: 100px;
+}
 .zeiten-grid {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:3px;
-  margin-top:48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
-.zeit-block { overflow:hidden; }
-.zeit-head {
-  background:var(--green-deep);
-  padding:28px 32px;
+.zt {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--sand);
+  box-shadow: 0 2px 12px rgba(44,36,22,.05);
+  transition: transform .3s, box-shadow .3s;
 }
-.zeit-day {
-  font-family:'Playfair Display',serif;
-  font-size:1.8rem; font-weight:700; color:var(--cream);
+.zt:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(44,36,22,.1);
 }
-.zeit-sub {
-  font-size:.65rem; font-weight:700; letter-spacing:.2em;
-  text-transform:uppercase; color:var(--gold); margin-top:4px;
+.zt-head {
+  background: var(--green);
+  padding: 20px 22px;
 }
-.zeit-body { background:var(--white); padding:28px 32px; display:flex; flex-direction:column; gap:18px; }
-.zeit-row { border-left:2px solid var(--green-pale); padding-left:14px; }
-.zeit-kurs {
-  font-size:.65rem; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--brown); margin-bottom:2px;
+.zt-day {
+  font-family: 'Lora', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
 }
-.zeit-time { font-size:.9rem; font-weight:300; color:var(--text-mid); line-height:1.5; }
+.zt-sub {
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.52);
+  margin-top: 3px;
+}
+.zt-body {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.zt-row { display: flex; align-items: flex-start; gap: 11px; }
+.zt-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.zt-kurs {
+  font-size: .74rem; font-weight: 700;
+  color: var(--green); margin-bottom: 1px;
+}
+.zt-time {
+  font-size: .83rem; font-weight: 400;
+  color: var(--text-mid); line-height: 1.5;
+}
 .zeiten-note {
-  margin-top:28px; font-size:.88rem; font-weight:300;
-  color:var(--text-mid); display:flex; align-items:center; gap:10px;
-}
-.zeiten-note span { font-size:1.1rem; }
-
-/* ─── GALERIE ─── */
-#galerie { background:var(--green-deep); padding:100px 0; }
-.galerie-header { padding:0 8%; margin-bottom:48px; }
-#galerie .sec-label { color:var(--gold); }
-#galerie .sec-label::before { background:var(--gold); }
-#galerie .sec-title { color:var(--cream); }
-#galerie .sec-title em { color:var(--gold); }
-
-/* masonry-feel grid */
-.galerie-grid {
-  display:grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  grid-template-rows: 260px 260px;
-  gap:3px;
-  padding:0 8%;
-}
-.galerie-item {
-  background:var(--green-mid);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:10px; cursor:pointer;
-  position:relative; overflow:hidden;
-  transition: transform .4s;
-}
-.galerie-item:hover { transform:scale(.99); }
-.galerie-item:hover .galerie-overlay { opacity:1; }
-.galerie-item img {
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; object-position:center; transition: transform .6s;
-}
-.ueber-photo img {
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
-}
-.galerie-item:hover img { transform:scale(1.04); }
-/* spanning items */
-.galerie-item:nth-child(1) { grid-row:1/3; }
-.galerie-item:nth-child(5) { grid-column:2/4; }
-
-.galerie-icon { font-size:2.4rem; opacity:.3; z-index:1; }
-.galerie-hint {
-  font-size:.65rem; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; color:rgba(248,244,238,.5); z-index:1;
-}
-.galerie-overlay {
-  position:absolute; inset:0; z-index:2;
-  background:rgba(24,40,24,.5);
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; transition:opacity .3s;
-}
-.galerie-overlay span {
-  font-size:.7rem; font-weight:700; letter-spacing:.18em;
-  text-transform:uppercase; color:var(--gold);
-  border:1px solid var(--gold); padding:8px 18px;
+  margin-top: 28px;
+  text-align: center;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--green);
 }
 
-/* ─── TRAINER ─── */
-#trainer { background:var(--cream); }
-.trainer-intro {
-  font-size:.98rem; font-weight:300; color:var(--text-mid);
-  line-height:1.8; max-width:520px; margin-bottom:52px;
+/* =============================================
+   GALERIE
+   ============================================= */
+#galerie { background: var(--white); }
+
+.gal-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr 1fr;
+  grid-template-rows: 240px 240px;
+  gap: 12px;
+  margin-top: 48px;
+}
+.gal {
+  border-radius: 16px;
+  background: var(--green-l);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform .35s;
+}
+.gal:hover { transform: scale(.985); }
+.gal:hover .gal-ov { opacity: 1; }
+.gal:first-child { grid-row: 1 / 3; }
+.gal:nth-child(4) { grid-column: 2 / 4; }
+.gal img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.gal-ico { font-size: 1.8rem; opacity: .25; z-index: 1; }
+.gal-txt {
+  font-size: .56rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--green-d); opacity: .45; z-index: 1;
+}
+.gal-ov {
+  position: absolute; inset: 0; z-index: 2;
+  background: rgba(61,107,69,.25);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+  border-radius: 16px;
+}
+.gal-ov span {
+  background: var(--white);
+  color: var(--green);
+  font-size: .74rem; font-weight: 700;
+  padding: 8px 18px; border-radius: 100px;
+}
+
+/* =============================================
+   TRAINER
+   ============================================= */
+#trainer { background: var(--cream-d); }
+
+.trainer-lead {
+  font-size: .98rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-mid);
+  max-width: 540px;
+  margin-bottom: 48px;
 }
 .trainer-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
-  gap:3px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+  gap: 16px;
 }
-.trainer-card {
-  background:var(--white);
-  overflow:hidden;
-  transition:transform .35s, box-shadow .35s;
+.tc {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--sand);
+  transition: transform .3s, box-shadow .3s, border-color .3s;
 }
-.trainer-card:hover {
-  transform:translateY(-6px);
-  box-shadow:0 20px 50px rgba(24,40,24,.12);
+.tc:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(44,36,22,.1);
+  border-color: var(--green-m);
 }
-.trainer-photo {
-  width:100%; aspect-ratio:3/4;
-  background: linear-gradient(160deg, var(--green-pale) 0%, var(--cream-dark) 100%);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:8px; position:relative; overflow:hidden;
+.tc-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--green-l), var(--cream-d));
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
 }
-.trainer-photo img {
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position: center top;
+.tc-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
 }
-.trainer-photo-icon { font-size:2.4rem; opacity:.25; }
-.trainer-photo-hint {
-  font-size:.62rem; font-weight:700; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--green-light); opacity:.6;
+.tc-ph-ico { font-size: 2rem; opacity: .22; z-index: 1; }
+.tc-ph-txt {
+  font-size: .54rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--green-d); opacity: .4; z-index: 1;
 }
-.trainer-bar { height:3px; background:var(--green-pale); }
-.trainer-info { padding:18px 20px 22px; }
-.trainer-name {
-  font-family:'Playfair Display',serif;
-  font-size:1rem; font-weight:600;
-  color:var(--green-deep); margin-bottom:4px;
+.tc-accent {
+  height: 3px;
+  background: var(--green);
 }
-.trainer-role {
-  font-size:.68rem; font-weight:700; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--brown); margin-bottom:8px;
+.tc-info { padding: 12px 14px 16px; }
+.tc-name {
+  font-family: 'Lora', serif;
+  font-size: .95rem; font-weight: 700;
+  color: var(--brown); margin-bottom: 2px;
 }
-.trainer-bereiche {
-  font-size:.8rem; font-weight:300;
-  color:var(--text-mid); line-height:1.6;
+.tc-role {
+  font-size: .64rem; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 6px;
+}
+.tc-ber {
+  font-size: .76rem; font-weight: 400;
+  color: var(--text-mid); line-height: 1.6;
 }
 
-/* ─── KONTAKT ─── */
-#kontakt {
-  background:var(--green-deep);
-  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;
-  position:relative; overflow:hidden;
-}
-.kontakt-orb {
-  position:absolute; width:500px; height:500px; border-radius:50%;
-  background:radial-gradient(circle, rgba(61,107,61,.3) 0%, transparent 70%);
-  top:-100px; right:-100px; pointer-events:none;
-  animation:orbMove 18s ease-in-out infinite alternate;
-}
-#kontakt .sec-label { color:var(--gold); }
-#kontakt .sec-label::before { background:var(--gold); }
-#kontakt .sec-title { color:var(--cream); }
-#kontakt .sec-title em { color:var(--gold); }
-.kontakt-text {
-  font-size:.98rem; font-weight:300; line-height:1.8;
-  color:rgba(248,244,238,.65); margin-bottom:36px;
-}
-.kontakt-details { display:flex; flex-direction:column; gap:16px; }
-.k-item { display:flex; align-items:center; gap:16px; }
-.k-icon {
-  width:44px; height:44px; flex-shrink:0;
-  background:rgba(255,255,255,.07);
-  display:flex; align-items:center; justify-content:center; font-size:1.1rem;
-}
-.k-label {
-  font-size:.62rem; font-weight:700; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--gold); margin-bottom:2px;
-}
-.k-value { font-size:.92rem; font-weight:300; color:rgba(248,244,238,.8); }
+/* =============================================
+   KONTAKT
+   ============================================= */
+#kontakt { background: var(--white); }
 
-/* form */
-.form { display:flex; flex-direction:column; gap:14px; position:relative; z-index:1; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.f-group { display:flex; flex-direction:column; gap:6px; }
-.f-label {
-  font-size:.62rem; font-weight:700; letter-spacing:.18em;
-  text-transform:uppercase; color:rgba(248,244,238,.5);
+.kontakt-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: start;
 }
-.f-input, .f-select, .f-textarea {
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--cream);
-  padding:14px 18px;
-  font-family:'Lato',sans-serif; font-size:.92rem; font-weight:300;
-  outline:none; width:100%;
-  transition:border-color .25s, background .25s;
+.k-info {}
+.k-info .s-body { margin-bottom: 30px; max-width: 100%; }
+
+.k-items {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-bottom: 28px;
 }
-.f-input::placeholder, .f-textarea::placeholder { color:rgba(248,244,238,.25); }
-.f-input:focus, .f-select:focus, .f-textarea:focus {
-  border-color:var(--gold); background:rgba(255,255,255,.09);
+.k-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 16px;
+  background: var(--cream);
+  border: 1px solid var(--sand);
+  border-radius: 12px;
+  transition: transform .2s;
 }
-.f-select option { background:var(--green-deep); }
-.f-textarea { resize:vertical; min-height:110px; }
+.k-item:hover { transform: translateX(4px); }
+.k-ico {
+  width: 38px; height: 38px;
+  background: var(--green-l);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.k-lbl {
+  font-size: .62rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 1px;
+}
+.k-val {
+  font-size: .9rem; font-weight: 500;
+  color: var(--text); line-height: 1.5;
+}
+.oeff {
+  background: var(--cream);
+  border: 1px solid var(--sand);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.oeff-title {
+  font-size: .67rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 14px;
+}
+.oeff-row {
+  display: flex; justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--sand);
+}
+.oeff-row:last-child { border-bottom: none; }
+.oeff-day { font-size: .88rem; font-weight: 600; color: var(--text); }
+.oeff-time { font-size: .84rem; font-weight: 400; color: var(--text-mid); }
+
+/* Formular */
+.kontakt-form {
+  background: var(--cream);
+  border: 1px solid var(--sand);
+  border-radius: 22px;
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.f-g { display: flex; flex-direction: column; gap: 6px; }
+.f-lbl {
+  font-size: .67rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-mid);
+}
+.f-inp, .f-sel, .f-txt {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 12px 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: .92rem; font-weight: 400;
+  outline: none; width: 100%; cursor: auto;
+  transition: border-color .25s, box-shadow .25s;
+}
+.f-inp::placeholder, .f-txt::placeholder { color: var(--text-dim); }
+.f-inp:focus, .f-sel:focus, .f-txt:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(61,107,69,.1);
+}
+.f-sel option { background: var(--white); }
+.f-txt { resize: vertical; min-height: 108px; }
 .f-btn {
-  align-self:flex-start;
-  background:var(--brown); color:var(--cream);
-  border:2px solid var(--brown);
-  padding:15px 38px;
-  font-family:'Lato',sans-serif; font-size:.8rem;
-  font-weight:700; letter-spacing:.16em; text-transform:uppercase;
-  cursor:pointer;
-  display:flex; align-items:center; gap:10px;
-  transition:background .3s, color .3s, gap .3s;
+  align-self: flex-start;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  padding: 13px 30px;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem; font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 9px;
+  box-shadow: 0 5px 18px rgba(61,107,69,.3);
+  transition: background .25s, transform .2s, box-shadow .25s;
 }
-.f-btn::after { content:'→'; transition:transform .3s; }
-.f-btn:hover { background:transparent; color:var(--gold); border-color:var(--gold); gap:16px; }
-.f-btn:hover::after { transform:translateX(4px); }
+.f-btn::after { content: '→'; }
+.f-btn:hover {
+  background: var(--green-d);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(61,107,69,.38);
+}
 
-/* ─── FOOTER ─── */
+/* =============================================
+   FOOTER
+   ============================================= */
 footer {
-  background:#0d1a0d;
-  color:rgba(248,244,238,.35);
-  padding:24px 8%;
-  display:flex; justify-content:space-between; align-items:center;
-  font-size:.75rem; letter-spacing:.05em;
+  background: var(--brown);
+  padding: 40px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative; z-index: 1;
 }
-footer a { color:var(--gold); text-decoration:none; }
+.footer-brand {
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.6;
+}
+.footer-brand span {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: .76rem;
+  font-weight: 400;
+  color: rgba(255,255,255,.45);
+  margin-top: 3px;
+}
+.footer-links {
+  display: flex; gap: 22px; list-style: none;
+}
+.footer-links a {
+  font-size: .77rem; font-weight: 500;
+  color: rgba(255,255,255,.52);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-copy {
+  font-size: .7rem;
+  color: rgba(255,255,255,.32);
+}
 
-/* ─── RESPONSIVE ─── */
-@media(max-width:1100px) {
-  .kurse-grid { grid-template-columns:repeat(2,1fr); }
-  .galerie-grid {
-    grid-template-columns:1fr 1fr;
-    grid-template-rows: repeat(4, 220px);
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 1024px) {
+  .ueber-wrap      { grid-template-columns: 1fr; gap: 48px; }
+  .warum-grid      { grid-template-columns: 1fr 1fr; }
+  .zeiten-grid     { grid-template-columns: 1fr; gap: 16px; }
+  .kontakt-wrap    { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-btn { display: none; }
+  nav { padding: 14px 5%; }
+  section { padding: 64px 5%; }
+  .hero-trust { gap: 18px; }
+  .htrust-sep { display: none; }
+  .gal-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 175px);
   }
-  .galerie-item:nth-child(1) { grid-row:1/2; }
-  .galerie-item:nth-child(5) { grid-column:1/3; }
+  .gal:first-child  { grid-row: 1 / 2; }
+  .gal:nth-child(4) { grid-column: 1 / 3; }
+  .kurse-grid { grid-template-columns: 1fr; }
+  .warum-grid { grid-template-columns: 1fr; }
+  .hero-sub { font-size: .98rem; }
 }
-@media(max-width:900px) {
-  .nav-links { display:none; }
-  section { padding:72px 6%; }
-  #ueber { grid-template-columns:1fr; gap:48px; }
-  .zeiten-grid { grid-template-columns:1fr; }
-  #kontakt { grid-template-columns:1fr; gap:52px; }
-  .form-row { grid-template-columns:1fr; }
-  .galerie-grid { padding:0 6%; }
-  #galerie { padding:72px 0; }
-  .galerie-header { padding:0 6%; }
+@media (max-width: 500px) {
+  .hero-title { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .trainer-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .gal-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .gal:first-child, .gal:nth-child(4) { grid-row: auto; grid-column: auto; }
+  .gal { min-height: 200px; }
+  .facts { gap: 8px; }
 }
-@media(max-width:600px) {
-  .kurse-grid { grid-template-columns:1fr; }
-  .galerie-grid {
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:repeat(4,180px);
-  }
-  .galerie-item:nth-child(1) { grid-row:1/2; }
-  .galerie-item:nth-child(5) { grid-column:1/3; }
-  .trainer-grid { grid-template-columns:repeat(2,1fr); }
-}
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="nav-logo" href="#hero">
-    <div class="nav-logo-placeholder">Logo einfügen</div>
-  </a>
+  <a class="nav-logo-wrap" href="#hero">Logo einfügen</a>
   <ul class="nav-links">
     <li><a href="#ueber">Über uns</a></li>
     <li><a href="#kurse">Kurse</a></li>
     <li><a href="#zeiten">Zeiten</a></li>
-    <li><a href="#galerie">Galerie</a></li>
     <li><a href="#trainer">Team</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
+  <a class="nav-btn" href="#kontakt">Jetzt anmelden</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <!-- SLIDESHOW: Ersetze background-image mit deinen Fotos, z.B.: style="background-image:url('foto1.jpg')" -->
-  <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:url('');">
-      <div class="hero-slide-hint">Foto 1 einfügen</div>
-    </div>
-    <div class="hero-slide" style="background-image:url('');">
-      <div class="hero-slide-hint">Foto 2 einfügen</div>
-    </div>
-    <div class="hero-slide" style="background-image:url('');">
-      <div class="hero-slide-hint">Foto 3 einfügen</div>
-    </div>
-    <div class="hero-slide" style="background-image:url('');">
-      <div class="hero-slide-hint">Foto 4 einfügen</div>
-    </div>
-    <div class="hero-slide" style="background-image:url('');">
-      <div class="hero-slide-hint">Foto 5 einfügen</div>
-    </div>
+
+  <div class="slides">
+    <!-- Foto einfügen: style="background-image:url('dateiname.jpg')" -->
+    <div class="slide active" style="background-image:url('');"><div class="slide-hint">Foto 1 — 1920 × 1080 px</div></div>
+    <div class="slide"        style="background-image:url('');"><div class="slide-hint">Foto 2 — 1920 × 1080 px</div></div>
+    <div class="slide"        style="background-image:url('');"><div class="slide-hint">Foto 3 — 1920 × 1080 px</div></div>
+    <div class="slide"        style="background-image:url('');"><div class="slide-hint">Foto 4 — 1920 × 1080 px</div></div>
+    <div class="slide"        style="background-image:url('');"><div class="slide-hint">Foto 5 — 1920 × 1080 px</div></div>
   </div>
-  <div class="hero-dots">
-    <button class="hero-dot active" onclick="goToSlide(0)"></button>
-    <button class="hero-dot" onclick="goToSlide(1)"></button>
-    <button class="hero-dot" onclick="goToSlide(2)"></button>
-    <button class="hero-dot" onclick="goToSlide(3)"></button>
-    <button class="hero-dot" onclick="goToSlide(4)"></button>
-  </div>
-  <div class="hero-grain"></div>
+
+  <div class="hero-ov"></div>
+
   <div class="hero-content">
-    <div class="hero-eyebrow">ÖRV Zeltweg · Gegründet 2002</div>
-    <h1 class="hero-title">Wo Hunde<br><em>glücklich</em><br>werden.</h1>
-    <p class="hero-sub">Professionelle Hundeausbildung im Herzen der Steiermark – mit Herz, Kompetenz und modernen Methoden. Für jede Rasse, jedes Alter.</p>
-    <a href="#kontakt" class="hero-cta">Jetzt anmelden</a>
+    <h1 class="hero-title">
+      Wo dein Hund<br>
+      <em>gerne hinkommt.</em>
+    </h1>
+    <p class="hero-sub">
+      Herzlich willkommen bei der Hundeschule ÖRV Zeltweg im Murtal.
+      Wir begleiten euch mit Geduld, Freude und echter Leidenschaft —
+      vom ersten Welpenkurs bis zum gemeinsamen Ziel.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-fill">Jetzt anmelden</a>
+      <a href="#kurse"   class="btn-ghost">Unsere Kurse</a>
+    </div>
+    <div class="hero-trust">
+      <div class="htrust-item">
+        <span class="htrust-num">20+</span>
+        <span class="htrust-lbl">Jahre Erfahrung</span>
+      </div>
+      <div class="htrust-sep"></div>
+      <div class="htrust-item">
+        <span class="htrust-num">10+</span>
+        <span class="htrust-lbl">Trainer</span>
+      </div>
+      <div class="htrust-sep"></div>
+      <div class="htrust-item">
+        <span class="htrust-num">3×</span>
+        <span class="htrust-lbl">pro Woche</span>
+      </div>
+    </div>
   </div>
-  <div class="hero-scroll-line"></div>
+
+  <div class="slide-dots">
+    <button class="sdot active" onclick="goSlide(0)"></button>
+    <button class="sdot"        onclick="goSlide(1)"></button>
+    <button class="sdot"        onclick="goSlide(2)"></button>
+    <button class="sdot"        onclick="goSlide(3)"></button>
+    <button class="sdot"        onclick="goSlide(4)"></button>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,26 C360,64 1080,0 1440,26 L1440,52 L0,52 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
 </section>
 
 <!-- ÜBER UNS -->
 <section id="ueber">
-  <div class="ueber-text reveal-left">
-    <div class="sec-label">Über uns</div>
-    <h2 class="sec-title">Eine Gemeinschaft<br>mit <em>Leidenschaft</em></h2>
-    <p>Der ÖRV Zeltweg – Österreichischer Rassehundeverein – steht seit <strong>2002</strong> für die Förderung einer liebevollen und wissenschaftlich fundierten Mensch-Hund-Beziehung.</p>
-    <p>Wir arbeiten mit <strong>artgerechten und modernen Erziehungsmethoden</strong>, die auf neuesten tierpsychologischen Erkenntnissen basieren. Bei uns ist jeder Hund willkommen – egal welche Rasse oder welches Alter.</p>
-    <p>Unser erfahrenes Trainerteam begleitet Sie vom ersten Welpenkurs bis zur sportlichen Höchstleistung. <strong>Kurseinstieg ist jederzeit möglich!</strong></p>
+  <div class="ueber-wrap">
+
+    <div class="ueber-photos r-l">
+      <!-- Hauptfoto: 900 × 450 px  |  Fotos 2 & 3: je 600 × 370 px -->
+      <div class="u-photo">
+        <div class="u-ph-icon">📷</div>
+        <div class="u-ph-txt">Hauptfoto einfügen</div>
+      </div>
+      <div class="u-photo">
+        <div class="u-ph-icon">📷</div>
+        <div class="u-ph-txt">Foto 2 einfügen</div>
+      </div>
+      <div class="u-photo">
+        <div class="u-ph-icon">📷</div>
+        <div class="u-ph-txt">Foto 3 einfügen</div>
+      </div>
+    </div>
+
+    <div class="r-r">
+      <p class="s-label">Über uns</p>
+      <h2 class="s-title">Eine Hundeschule<br>wie <em>eine Familie.</em></h2>
+      <p class="s-body" style="max-width:100%; margin-bottom:16px;">
+        Der ÖRV Zeltweg wurde <strong>2002 gegründet</strong> und gehört
+        heute zu den bekanntesten Hundeschulen im Murtal. Wir sind Mitglied
+        des Österreichischen Rassehundevereins (ÖKV) und des ASVÖ Steiermark.
+      </p>
+      <p class="s-body" style="max-width:100%;">
+        Bei uns stehen <strong>artgerechte und moderne Erziehungsmethoden</strong>
+        im Mittelpunkt. Wir nehmen uns Zeit für euch und eure Hunde —
+        egal ob Welpe, Junghund oder erfahrener Vierbeiner.
+      </p>
+      <div class="facts">
+        <div class="fact-item">
+          <div class="fact-num">20+</div>
+          <div class="fact-lbl">Jahre</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-num">10+</div>
+          <div class="fact-lbl">Trainer</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-num">7</div>
+          <div class="fact-lbl">Kurse</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-num">3×</div>
+          <div class="fact-lbl">pro Woche</div>
+        </div>
+      </div>
+      <div class="ueber-callout">
+        🐾 &nbsp;Kurseinstieg jederzeit möglich — einfach vorbeikommen!
+      </div>
+    </div>
+
   </div>
-  <div class="ueber-visual reveal-right">
-    <div class="ueber-photo">
-      <span>🐾</span>
-      <span class="ueber-photo-hint">Hauptfoto einfügen</span>
+</section>
+
+<!-- WARUM WIR -->
+<section id="warum">
+  <div class="r" style="max-width:600px; margin-bottom:0;">
+    <p class="s-label">Warum zu uns?</p>
+    <h2 class="s-title">Was euch bei uns<br><em>erwartet.</em></h2>
+  </div>
+  <div class="warum-grid">
+    <div class="w-card r-s">
+      <div class="w-icon">❤️</div>
+      <h3 class="w-title">Familiär &amp; herzlich</h3>
+      <p class="w-text">Wir kennen jeden Hund und jeden Halter persönlich. Bei uns bist du keine Nummer — du bist Teil unserer Gemeinschaft.</p>
     </div>
-    <div class="ueber-photo">
-      <span>🐕</span>
-      <span class="ueber-photo-hint">Foto einfügen</span>
+    <div class="w-card r-s">
+      <div class="w-icon">🎓</div>
+      <h3 class="w-title">Erfahrene Trainer</h3>
+      <p class="w-text">Alle Trainer sind zertifiziert und bilden sich laufend weiter. Ihr seid bei uns in den besten Händen.</p>
     </div>
-    <div class="ueber-photo">
-      <span>🏅</span>
-      <span class="ueber-photo-hint">Foto einfügen</span>
+    <div class="w-card r-s">
+      <div class="w-icon">🐕</div>
+      <h3 class="w-title">Jede Rasse willkommen</h3>
+      <p class="w-text">Ob Welpe oder Senior, Labrador oder Mischling — bei uns ist jeder Hund herzlich willkommen.</p>
+    </div>
+    <div class="w-card r-s">
+      <div class="w-icon">📅</div>
+      <h3 class="w-title">Jederzeit einsteigen</h3>
+      <p class="w-text">Kein Warten auf den nächsten Kursstart. Ihr könnt jederzeit einsteigen und gleich loslegen.</p>
+    </div>
+    <div class="w-card r-s">
+      <div class="w-icon">🌦️</div>
+      <h3 class="w-title">Immer draußen</h3>
+      <p class="w-text">Die Kurse finden bei jedem Wetter statt — denn echtes Hundetraining passiert im Alltag, nicht nur bei Sonnenschein.</p>
+    </div>
+    <div class="w-card r-s">
+      <div class="w-icon">🌿</div>
+      <h3 class="w-title">Schöne Lage</h3>
+      <p class="w-text">Mitten in der grünen Steiermark. Das Murtal bietet einen wunderschönen Rahmen für euer Training.</p>
     </div>
   </div>
 </section>
 
 <!-- KURSE -->
 <section id="kurse">
-  <div class="kurse-bg"></div>
-  <div class="kurse-bg-orb"></div>
-  <div class="kurse-header reveal">
-    <div class="sec-label">Ausbildungsangebot</div>
-    <h2 class="sec-title">Unsere <em>Kurse</em></h2>
+  <div class="r">
+    <p class="s-label">Ausbildungsangebot</p>
+    <h2 class="s-title">Unsere <em>Kurse</em></h2>
+    <p class="s-body">Von den ersten Schritten mit dem Welpen bis zu gemeinsamen Zielen — für jeden ist etwas dabei.</p>
   </div>
   <div class="kurse-grid">
-    <div class="kurs-card reveal"><span class="kurs-icon">🐶</span><div class="kurs-name">Welpenkurs</div><p class="kurs-desc">Der perfekte Start ins Hundeleben. Sozialisation, Grundkommandos und Vertrauen aufbauen.</p><span class="kurs-badge">Ganzjährig</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">🐕</span><div class="kurs-name">Junghundekurs</div><p class="kurs-desc">Aufbautraining im Jugendalter – Grundgehorsamkeit und Vorbereitung auf weiterführende Kurse.</p><span class="kurs-badge">Laufend</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">🏅</span><div class="kurs-name">Begleithund (BH)</div><p class="kurs-desc">Erziehung zur Verkehrssicherheit und theoretischer Unterricht über Ausbildung und Hundehaltung.</p><span class="kurs-badge">Prüfung</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">🏆</span><div class="kurs-name">BGH 1–3</div><p class="kurs-desc">Begleithundprüfung mit Unterordnung – für sportbegeisterte Teams und ambitionierte Hundeführer.</p><span class="kurs-badge">Leistungssport</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">🎯</span><div class="kurs-name">Rally Obedience</div><p class="kurs-desc">Der Trendsport für Hund und Mensch – Parcours mit verschiedenen Stationen, Teamwork und Spaß.</p><span class="kurs-badge">Trendsport</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">🌿</span><div class="kurs-name">Fährtenhund</div><p class="kurs-desc">Nasenarbeit und Spursuche – natürliche Fähigkeiten gezielt fördern auf höchstem Niveau.</p><span class="kurs-badge">Nasenarbeit</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">⚡</span><div class="kurs-name">Sporthunde</div><p class="kurs-desc">Konditionelles Training und Wettkampfvorbereitung für leistungsbegeisterte Teams.</p><span class="kurs-badge">Fortgeschritten</span></div>
-    <div class="kurs-card reveal"><span class="kurs-icon">🧠</span><div class="kurs-name">ROBI – Breitensport</div><p class="kurs-desc">Alltagstraining ohne Leistungsdruck – für alle Hunde und Hundehalter, die Spaß am Training haben.</p><span class="kurs-badge">Für alle</span></div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">🐶</div>
+      <h3 class="k-name">Welpenkurs</h3>
+      <p class="k-desc">Der ideale Einstieg. Sozialisation, erste Kommandos und der Aufbau von echtem Vertrauen — ganzjährig buchbar.</p>
+      <span class="k-tag">Ganzjährig</span>
+    </div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">🐕</div>
+      <h3 class="k-name">Junghundekurs</h3>
+      <p class="k-desc">Für Hunde im Jugendalter: Grundgehorsamkeit aufbauen, Ablenkungen meistern, Bindung stärken.</p>
+      <span class="k-tag">Laufend</span>
+    </div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">🏅</div>
+      <h3 class="k-name">Begleithund (BH)</h3>
+      <p class="k-desc">Verkehrssicherheit und Grundgehorsam für den Alltag. Mit der Möglichkeit zur offiziellen Prüfung.</p>
+      <span class="k-tag amber">Prüfung möglich</span>
+    </div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">🏆</div>
+      <h3 class="k-name">BGH 1–3</h3>
+      <p class="k-desc">Begleithundprüfung mit Unterordnung — für alle, die gemeinsam mit ihrem Hund etwas erreichen möchten. Teamarbeit im Vordergrund.</p>
+      <span class="k-tag amber">Prüfung möglich</span>
+    </div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">🎯</div>
+      <h3 class="k-name">Rally Obedience</h3>
+      <p class="k-desc">Parcours mit verschiedenen Aufgaben — macht enorm viel Spaß und stärkt die Verbindung zwischen Hund und Halter.</p>
+      <span class="k-tag">Trendsport</span>
+    </div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">⚡</div>
+      <h3 class="k-name">Sporthundeausbildung</h3>
+      <p class="k-desc">Kondition, Unterordnung und Wettkampfvorbereitung für ambitionierte Teams.</p>
+      <span class="k-tag amber">Fortgeschritten</span>
+    </div>
+
+    <div class="k-card r-s">
+      <div class="k-icon">🧠</div>
+      <h3 class="k-name">ROBI – Breitensport</h3>
+      <p class="k-desc">Entspanntes Alltagstraining ohne Druck. Perfekt für alle, die einfach Freude am gemeinsamen Training suchen.</p>
+      <span class="k-tag">Für alle</span>
+    </div>
+
   </div>
 </section>
 
 <!-- KURSZEITEN -->
 <section id="zeiten">
-  <div class="reveal">
-    <div class="sec-label">Trainingszeiten</div>
-    <h2 class="sec-title">Wann wir <em>trainieren</em></h2>
+  <div class="zeiten-top r">
+    <div>
+      <p class="s-label">Trainingszeiten</p>
+      <h2 class="s-title">Wann wir <em>trainieren</em></h2>
+    </div>
+    <div class="zeiten-badge">☀️ &nbsp;Kurse finden bei jedem Wetter statt</div>
   </div>
+
   <div class="zeiten-grid">
-    <div class="zeit-block reveal">
-      <div class="zeit-head"><div class="zeit-day">Dienstag</div><div class="zeit-sub">Wöchentlich</div></div>
-      <div class="zeit-body">
-        <div class="zeit-row"><div class="zeit-kurs">ROBI</div><div class="zeit-time">16:00 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">Welpen</div><div class="zeit-time">17:00 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">Junghunde</div><div class="zeit-time">17:00 Uhr</div></div>
+
+    <div class="zt r-s">
+      <div class="zt-head">
+        <div class="zt-day">Dienstag</div>
+        <div class="zt-sub">Wöchentlich</div>
+      </div>
+      <div class="zt-body">
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">ROBI</div><div class="zt-time">16:00 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">Welpen</div><div class="zt-time">17:00 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">Junghunde</div><div class="zt-time">17:00 Uhr</div></div></div>
       </div>
     </div>
-    <div class="zeit-block reveal">
-      <div class="zeit-head"><div class="zeit-day">Mittwoch</div><div class="zeit-sub">Wöchentlich</div></div>
-      <div class="zeit-body">
-        <div class="zeit-row"><div class="zeit-kurs">BH</div><div class="zeit-time">16:30 – 17:00 & 17:30 – 18:00 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">BGH 1+2+3</div><div class="zeit-time">17:00 – 17:30 & 18:00 – 18:30 Uhr</div></div>
+
+    <div class="zt r-s">
+      <div class="zt-head">
+        <div class="zt-day">Mittwoch</div>
+        <div class="zt-sub">Wöchentlich</div>
+      </div>
+      <div class="zt-body">
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">BH</div><div class="zt-time">16:30 – 17:00 &amp; 17:30 – 18:00 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">BGH 1+2+3</div><div class="zt-time">17:00 – 17:30 &amp; 18:00 – 18:30 Uhr</div></div></div>
       </div>
     </div>
-    <div class="zeit-block reveal">
-      <div class="zeit-head"><div class="zeit-day">Samstag</div><div class="zeit-sub">Wöchentlich</div></div>
-      <div class="zeit-body">
-        <div class="zeit-row"><div class="zeit-kurs">ROBI</div><div class="zeit-time">13:30 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">Welpen</div><div class="zeit-time">14:00 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">Junghunde</div><div class="zeit-time">14:00 – 14:30 & 15:00 – 15:30 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">BH</div><div class="zeit-time">14:30 – 15:00 & 15:30 – 16:00 Uhr</div></div>
-        <div class="zeit-row"><div class="zeit-kurs">BGH 1+2+3</div><div class="zeit-time">16:30 – 17:00 & 17:30 – 18:00 Uhr</div></div>
+
+    <div class="zt r-s">
+      <div class="zt-head">
+        <div class="zt-day">Samstag</div>
+        <div class="zt-sub">Wöchentlich</div>
+      </div>
+      <div class="zt-body">
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">ROBI</div><div class="zt-time">13:30 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">Welpen</div><div class="zt-time">14:00 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">Junghunde</div><div class="zt-time">14:00 – 14:30 &amp; 15:00 – 15:30 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">BH</div><div class="zt-time">14:30 – 15:00 &amp; 15:30 – 16:00 Uhr</div></div></div>
+        <div class="zt-row"><div class="zt-dot"></div><div><div class="zt-kurs">BGH 1+2+3</div><div class="zt-time">16:30 – 17:00 &amp; 17:30 – 18:00 Uhr</div></div></div>
       </div>
     </div>
+
   </div>
-  <p class="zeiten-note reveal"><span>🐾</span> Kurseinstieg jederzeit möglich · Die Kurse finden bei jeder Witterung statt</p>
+
+  <p class="zeiten-note r">🐾 &nbsp;Kurseinstieg jederzeit möglich</p>
 </section>
 
 <!-- GALERIE -->
 <section id="galerie">
-  <div class="galerie-header reveal">
-    <div class="sec-label">Einblicke</div>
-    <h2 class="sec-title">Aus unserem <em>Alltag</em></h2>
+  <div class="r">
+    <p class="s-label">Einblicke</p>
+    <h2 class="s-title">Aus unserem <em>Alltag</em></h2>
   </div>
-  <div class="galerie-grid">
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
-    <div class="galerie-item reveal">
-      <div class="galerie-icon">📷</div>
-      <div class="galerie-hint">Foto einfügen</div>
-      <div class="galerie-overlay"><span>Ansehen</span></div>
-    </div>
+  <div class="gal-grid">
+    <!-- Hauptbild: 600 × 500 px  |  Restliche: min. 400 × 240 px -->
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Hauptfoto einfügen</div><div class="gal-ov"><span>Ansehen</span></div></div>
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Foto einfügen</div><div class="gal-ov"><span>Ansehen</span></div></div>
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Foto einfügen</div><div class="gal-ov"><span>Ansehen</span></div></div>
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Foto einfügen (breit)</div><div class="gal-ov"><span>Ansehen</span></div></div>
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Foto einfügen</div><div class="gal-ov"><span>Ansehen</span></div></div>
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Foto einfügen</div><div class="gal-ov"><span>Ansehen</span></div></div>
+    <div class="gal r-s"><div class="gal-ico">📷</div><div class="gal-txt">Foto einfügen</div><div class="gal-ov"><span>Ansehen</span></div></div>
   </div>
 </section>
 
 <!-- TRAINER -->
 <section id="trainer">
-  <div class="reveal">
-    <div class="sec-label">Unser Team</div>
-    <h2 class="sec-title">Ihre <em>Trainer</em></h2>
-    <p class="trainer-intro">Zertifizierte ÖRV-Trainer mit jahrelanger Erfahrung – leidenschaftlich, kompetent und immer für Sie da.</p>
+  <div class="r">
+    <p class="s-label">Unser Team</p>
+    <h2 class="s-title">Eure <em>Trainer</em></h2>
+    <p class="trainer-lead">Zertifizierte ÖRV-Trainer mit jahrelanger Erfahrung — leidenschaftlich und immer für euch da.</p>
   </div>
   <div class="trainer-grid">
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Jaritz Manfred</div><div class="trainer-role">Obmann · Haupttrainer</div><div class="trainer-bereiche">ÖRV A Trainer · Fährtenleger · BGH 1–3, Fährte, Sporthunde</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Jaritz Manfred</div><div class="tc-role">Obmann · Haupttrainer</div><div class="tc-ber">ÖRV A Trainer · Fährtenleger<br>BGH 1–3, Fährte, Sporthunde</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Jaritz Jessica</div><div class="trainer-role">Dipl. Hundepsychologin</div><div class="trainer-bereiche">ÖRV A Trainer · Verhaltenstherapeutin · BH, BGH, Rally Obedience, Alltagstraining</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Jaritz Jessica</div><div class="tc-role">Dipl. Hundepsychologin</div><div class="tc-ber">ÖRV A Trainer · Verhaltenstherapeutin<br>BH, BGH, Rally, Alltag</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Binder Brigitte</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Welpen & Junghunde</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Binder Brigitte</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Welpen &amp; Junghunde</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Klicnik Eva</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Welpen & Junghunde</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Klicnik Eva</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Welpen &amp; Junghunde</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Fischer Sigrid</div><div class="trainer-role">ÖKV Fährtenleger</div><div class="trainer-bereiche">Junghunde, BH, BGH 1–3</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Fischer Sigrid</div><div class="tc-role">ÖKV Fährtenleger</div><div class="tc-ber">Junghunde, BH, BGH 1–3</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Moharitsch Roland</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Welpen & Junghunde</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Moharitsch Roland</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Welpen &amp; Junghunde</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Ölser Nicole</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Welpen</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Ölser Nicole</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Welpen</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Weber Sabine</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Rally Obedience</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Weber Sabine</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Rally Obedience</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Ramprecht Angelika</div><div class="trainer-role">ÖRV A Trainer i. A.</div><div class="trainer-bereiche">Rally Obedience</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Ramprecht Angelika</div><div class="tc-role">ÖRV A Trainer i. A.</div><div class="tc-ber">Rally Obedience</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Bacher Ulfried</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Unterordnung</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Bacher Ulfried</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Unterordnung</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Fuchssteiner Andreas</div><div class="trainer-role">Unterordnungstrainer</div><div class="trainer-bereiche">Unterordnung & Obedience</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Fuchssteiner Andreas</div><div class="tc-role">Unterordnungstrainer</div><div class="tc-ber">Unterordnung &amp; Obedience</div></div>
     </div>
-    <div class="trainer-card reveal">
-      <div class="trainer-photo"><div class="trainer-photo-icon">📷</div><div class="trainer-photo-hint">Foto einfügen</div></div>
-      <div class="trainer-bar"></div>
-      <div class="trainer-info"><div class="trainer-name">Ebner Yves</div><div class="trainer-role">ÖRV A Trainer</div><div class="trainer-bereiche">Welpen</div></div>
+
+    <div class="tc r-s">
+      <div class="tc-photo"><div class="tc-ph-ico">📷</div><div class="tc-ph-txt">Foto einfügen</div></div>
+      <div class="tc-accent"></div>
+      <div class="tc-info"><div class="tc-name">Ebner Yves</div><div class="tc-role">ÖRV A Trainer</div><div class="tc-ber">Welpen</div></div>
     </div>
+
   </div>
 </section>
 
 <!-- KONTAKT -->
 <section id="kontakt">
-  <div class="kontakt-orb"></div>
-  <div class="reveal-left">
-    <div class="sec-label">Kontakt</div>
-    <h2 class="sec-title">Melden Sie<br>sich <em>bei uns</em></h2>
-    <p class="kontakt-text">Haben Sie Fragen? Wir freuen uns auf Ihre Nachricht. Kurseinstieg ist jederzeit möglich – kommen Sie einfach vorbei!</p>
-    <div class="kontakt-details">
-      <div class="k-item"><div class="k-icon">📍</div><div><div class="k-label">Adresse</div><div class="k-value">Zeltweg, Murtal · Steiermark</div></div></div>
-      <div class="k-item"><div class="k-icon">🌐</div><div><div class="k-label">Website</div><div class="k-value">oerv-zeltweg.at</div></div></div>
-      <div class="k-item"><div class="k-icon">📅</div><div><div class="k-label">Training</div><div class="k-value">Dienstag · Mittwoch · Samstag</div></div></div>
+  <div class="kontakt-wrap">
+
+    <div class="r-l">
+      <p class="s-label">Kontakt</p>
+      <h2 class="s-title">Meldet euch<br><em>bei uns.</em></h2>
+      <p class="s-body" style="max-width:100%; margin-bottom:28px;">
+        Habt ihr Fragen zu unseren Kursen oder möchtet ihr einfach kurz vorbeischauen?
+        Wir freuen uns auf euch!
+      </p>
+      <div class="k-items">
+        <div class="k-item">
+          <div class="k-ico">📍</div>
+          <div><div class="k-lbl">Adresse</div><div class="k-val">Zeltweg · Murtal · Steiermark</div></div>
+        </div>
+        <div class="k-item">
+          <div class="k-ico">🌐</div>
+          <div><div class="k-lbl">Website</div><div class="k-val">oerv-zeltweg.at</div></div>
+        </div>
+        <div class="k-item">
+          <div class="k-ico">📅</div>
+          <div><div class="k-lbl">Training</div><div class="k-val">Dienstag · Mittwoch · Samstag</div></div>
+        </div>
+      </div>
+      <div class="oeff">
+        <div class="oeff-title">Trainingszeiten</div>
+        <div class="oeff-row"><span class="oeff-day">Dienstag</span><span class="oeff-time">ab 16:00 Uhr</span></div>
+        <div class="oeff-row"><span class="oeff-day">Mittwoch</span><span class="oeff-time">ab 16:30 Uhr</span></div>
+        <div class="oeff-row"><span class="oeff-day">Samstag</span><span class="oeff-time">ab 13:30 Uhr</span></div>
+      </div>
     </div>
-  </div>
-  <div class="reveal-right">
-    <form class="form" onsubmit="return false;">
-      <div class="form-row">
-        <div class="f-group"><label class="f-label">Vorname</label><input type="text" class="f-input" placeholder="Ihr Vorname"></div>
-        <div class="f-group"><label class="f-label">Nachname</label><input type="text" class="f-input" placeholder="Ihr Nachname"></div>
-      </div>
-      <div class="f-group"><label class="f-label">E-Mail</label><input type="email" class="f-input" placeholder="ihre@email.at"></div>
-      <div class="f-group">
-        <label class="f-label">Ich interessiere mich für</label>
-        <select class="f-select f-input">
-          <option value="">Kurs auswählen …</option>
-          <option>Welpenkurs</option>
-          <option>Junghundekurs</option>
-          <option>Begleithundkurs (BH)</option>
-          <option>BGH 1–3</option>
-          <option>Rally Obedience</option>
-          <option>Fährtenhundausbildung</option>
-          <option>Sporthundeausbildung</option>
-          <option>ROBI / Breitensport</option>
-          <option>Allgemeine Anfrage</option>
-        </select>
-      </div>
-      <div class="f-group"><label class="f-label">Nachricht</label><textarea class="f-textarea" placeholder="Erzählen Sie uns von Ihrem Hund …"></textarea></div>
-      <button type="submit" class="f-btn">Nachricht senden</button>
-    </form>
+
+    <div class="r-r">
+      <form class="kontakt-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="f-g">
+            <label class="f-lbl">Vorname</label>
+            <input type="text" class="f-inp" placeholder="Max" autocomplete="off">
+          </div>
+          <div class="f-g">
+            <label class="f-lbl">Nachname</label>
+            <input type="text" class="f-inp" placeholder="Mustermann" autocomplete="off">
+          </div>
+        </div>
+        <div class="f-g">
+          <label class="f-lbl">E-Mail oder Telefon</label>
+          <input type="text" class="f-inp" placeholder="eure@email.at" autocomplete="off">
+        </div>
+        <div class="f-g">
+          <label class="f-lbl">Ich interessiere mich für</label>
+          <select class="f-sel f-inp">
+            <option value="">Kurs auswählen …</option>
+            <option>Welpenkurs</option>
+            <option>Junghundekurs</option>
+            <option>Begleithundkurs (BH)</option>
+            <option>BGH 1–3</option>
+            <option>Rally Obedience</option>
+            <option>Sporthundeausbildung</option>
+            <option>ROBI / Breitensport</option>
+            <option>Allgemeine Anfrage</option>
+          </select>
+        </div>
+        <div class="f-g">
+          <label class="f-lbl">Nachricht</label>
+          <textarea class="f-txt" placeholder="Erzählt uns von eurem Hund …"></textarea>
+        </div>
+        <button type="submit" class="f-btn">Nachricht senden</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 ÖRV Zeltweg – Österreichischer Rassehundeverein</span>
-  <span>Mitglied des <a href="#">ÖKV</a> · <a href="#">ASVÖ Steiermark</a></span>
+  <div class="footer-brand">
+    ÖRV Zeltweg – Hundeschule Murtal
+    <span>Österreichischer Rassehundeverein · Gegründet 2002</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">ÖKV</a></li>
+    <li><a href="#">ASVÖ Steiermark</a></li>
+    <li><a href="#">Impressum</a></li>
+  </ul>
+  <span class="footer-copy">&copy; 2025 ÖRV Zeltweg</span>
 </footer>
 
 <script>
 // Slideshow
-const slides = document.querySelectorAll('.hero-slide');
-const dots = document.querySelectorAll('.hero-dot');
-let current = 0;
-let timer;
-
-function goToSlide(n) {
-  slides[current].classList.remove('active');
-  dots[current].classList.remove('active');
-  current = n;
-  slides[current].classList.add('active');
-  dots[current].classList.add('active');
-  resetTimer();
-}
-
-function nextSlide() {
-  goToSlide((current + 1) % slides.length);
-}
-
-function resetTimer() {
+const slides = document.querySelectorAll('.slide');
+const dots   = document.querySelectorAll('.sdot');
+let cur = 0, timer;
+function goSlide(n) {
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
   clearInterval(timer);
-  timer = setInterval(nextSlide, 5000);
+  timer = setInterval(() => goSlide((cur + 1) % slides.length), 5500);
 }
+timer = setInterval(() => goSlide((cur + 1) % slides.length), 5500);
 
-resetTimer();
-
-// Nav scroll
+// Nav
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-// Scroll reveal
-const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      const siblings = [...entry.target.parentElement.children].filter(c =>
-        c.classList.contains('reveal') || c.classList.contains('reveal-left') || c.classList.contains('reveal-right')
-      );
-      const idx = siblings.indexOf(entry.target);
-      setTimeout(() => entry.target.classList.add('visible'), idx * 70);
-      obs.unobserve(entry.target);
+// Reveal
+const els = document.querySelectorAll('.r, .r-l, .r-r, .r-s');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const sibs = [...e.target.parentElement.children]
+        .filter(c => c.classList.contains('r')   ||
+                     c.classList.contains('r-l') ||
+                     c.classList.contains('r-r') ||
+                     c.classList.contains('r-s'));
+      setTimeout(() => e.target.classList.add('on'), sibs.indexOf(e.target) * 85);
+      obs.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
-allReveals.forEach(el => obs.observe(el));
+}, { threshold: 0.08 });
+els.forEach(el => obs.observe(el));
 </script>
+
 </body>
 </html>
